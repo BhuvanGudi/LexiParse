@@ -103,6 +103,36 @@ This version includes the shortened Stack Overflow link for adding CMake to the 
 
 ---
 
+### 3. Install C++ Compiler
+
+After installing CMake, you will need to install a C++ compiler to ensure that CMake can use `nmake` for building your projects. This step is essential, as `nmake` relies on a C++ compiler to compile and link code properly.
+
+To install the C++ compiler, follow these steps:
+
+1. **Download Visual C++ Build Tools**:
+
+   - Visit the official [Visual C++ Build Tools page](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+   - Click on "Download" to get the installer.
+
+2. **Run the Installer**:
+
+   - Launch the installer after it finishes downloading.
+   - During installation, select the **C++ build tools** option, which includes the necessary compiler, libraries, and other essential components for building C++ projects.
+   - Make sure to check the required components, such as the **MSVC (Microsoft Visual C++) toolset**, **Windows SDK**, and **C++ CMake tools for Windows**.
+
+3. **Verify Installation**:
+   - After the installation completes, verify that the compiler is available by running the following command in your terminal:
+     ```bash
+     cl
+     ```
+   - This should show the version information for the C++ compiler, confirming that it was installed successfully.
+
+---
+
+This should set up the necessary environment for `nmake` and allow you to proceed with your CMake-based builds.
+
+---
+
 ### LexiParse README (For Compiler Framework)
 
 Here’s the README content you requested for LexiParse, a powerful and modular compiler framework:
