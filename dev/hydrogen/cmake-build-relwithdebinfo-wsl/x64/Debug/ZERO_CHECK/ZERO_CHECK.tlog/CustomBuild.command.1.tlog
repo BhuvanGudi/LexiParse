@@ -1,0 +1,10 @@
+^C:\USERS\BHUVA\ONEDRIVE\DESKTOP\GITHUB PROJECTS\COMPILERFORC\DEV\HYDROGEN\CMAKE-BUILD-RELWITHDEBINFO-WSL\CMAKEFILES\D86FB83EF91E5A4668AFD407FE88B183\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\cmake-4.0.0-rc1-windows-x86_64\bin\cmake.exe" "-SC:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen" "-BC:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen/cmake-build-relwithdebinfo-wsl" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen/cmake-build-relwithdebinfo-wsl/hydrogen.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

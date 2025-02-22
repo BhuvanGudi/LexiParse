@@ -127,9 +127,205 @@ To install the C++ compiler, follow these steps:
      ```
    - This should show the version information for the C++ compiler, confirming that it was installed successfully.
 
+### Add NMake to System Path
+
+1. To use Microsoft Visual Studio(C++ Build Tools) from the command line, you need to add it to the system `PATH` environment variable. For detailed instructions on how to do this, refer to this [guide on Stack Overflow](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho)
+
 ---
 
 This should set up the necessary environment for `nmake` and allow you to proceed with your CMake-based builds.
+
+---
+
+This is **guide** for setting up Visual Studio Build Tools, especially for C++ development using CMake and NMake. Here’s a clearer, slightly refined version to make it even easier to follow:
+
+---
+
+## 🔨 **1. Check if Visual Studio Build Tools Are Installed**
+
+### ✅ **Verify Installation:**
+
+1. **Open the Visual Studio Installer** (search for it in the Start Menu).
+2. Find your installed version (e.g., _Visual Studio 2022_) and click **Modify**.
+3. Under the **Workloads** tab, make sure the following is checked:
+   - ✅ **Desktop development with C++** (includes MSVC, Windows SDK, and CMake support).
+4. Click **Modify** to install any missing components.
+
+---
+
+## ✅ **2. Install Standalone Build Tools (If Visual Studio Is Not Installed)**
+
+If you don’t have Visual Studio installed but only need the build tools:
+
+1. **[Download Build Tools for Visual Studio 2022](https://visualstudio.microsoft.com/visual-cpp-build-tools/)**.
+2. Run the installer and select:
+   - ✅ **MSVC v143 - VS 2022 C++ x64/x86 build tools**
+   - ✅ **Windows 10 SDK** (or **Windows 11 SDK** if applicable)
+   - ✅ **CMake tools for Windows**
+3. Complete the installation.
+
+---
+
+## 📍 **3. Verify Installation**
+
+### ✅ **Check if Everything Works:**
+
+1. Open the **Developer Command Prompt for Visual Studio** (search in Start Menu).
+2. Run the following commands to verify:
+
+- **Check `nmake`:**
+
+  ```bash
+  nmake -?
+  ```
+
+  - If you see help text, NMake is working correctly.
+
+- **Check the compiler:**
+  ```bash
+  cl
+  ```
+  - This should display the Microsoft C/C++ Compiler information.
+
+---
+
+## 🔥 **4. Run Your CMake Command**
+
+If everything is set up correctly, run:
+
+```bash
+cmake -G "NMake Makefiles" ..
+```
+
+---
+
+It looks like you've successfully built the project, but running the executable is causing issues. Here's what seems to be happening:
+
+1. **Build Success:** Your project builds without errors, and `hyfro.exe` is generated in the `build/Debug` directory.
+
+2. **Execution Errors:** PowerShell can't recognize the executable, even when you're in the correct directory.
+
+### **Possible Solutions**
+
+1. **Use `.\` Prefix in PowerShell:**
+   In PowerShell, to run executables from the current directory, you need to prefix the command with `.\`. Try this while in the `Debug` directory:
+
+   ```
+   .\hyfro.exe
+   ```
+
+2. **Check File Existence:**
+   Double-check if `hyfro.exe` is present in `build/Debug/`:
+
+   ```
+   Get-ChildItem -Path . -Filter hyfro.exe
+   ```
+
+3. **Verify Execution Policy:**
+   If PowerShell blocks execution, check your policy with:
+
+   ```
+   Get-ExecutionPolicy
+   ```
+
+   If it's restricted, you can change it temporarily:
+
+   ```
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+   ```
+
+4. **Try Using Command Prompt (CMD):**
+   Sometimes, running the executable directly from Command Prompt instead of PowerShell works:
+   ```
+   cd "C:\Users\bhuva\OneDrive\Desktop\GitHub Projects\CompilerForC\dev\hydrogen\build\Debug"
+   hyfro.exe
+   ```
+
+---
+
+## Overview
+
+This project demonstrates how to translate a simple C statement into its corresponding assembly code using Linux system calls. The goal is to break down the C return statement and show its equivalent in both tokenized form and low-level assembly language.
+
+## Code Breakdown
+
+### Original C Code
+
+```
+return 69;
+```
+
+### Token Representation
+
+```
+RETURN
+INT_LIT => 69
+SEMI
+```
+
+This representation breaks the C statement into its fundamental tokens:
+
+- `RETURN`: The return keyword in C.
+- `INT_LIT`: An integer literal with a value of 69.
+- `SEMI`: Semicolon indicating the end of the statement.
+
+### Assembly Equivalent
+
+```
+global _start
+
+_start:
+    mov rax, 60    ; syscall number for exit
+    mov rdi, 69    ; exit status code
+    syscall        ; invoke syscall
+```
+
+#### Explanation:
+
+- `global _start`: Declares the entry point of the program.
+- `_start`: Label where execution begins.
+- `mov rax, 60`: Loads the system call number for exiting a process (60 on Linux x86-64) into the `rax` register.
+- `mov rdi, 69`: Moves the exit status code (69) into the `rdi` register.
+- `syscall`: Executes the system call, effectively terminating the program with the given exit code.
+
+## Purpose
+
+This example serves as a minimalist demonstration of how high-level code translates to low-level operations. It's useful for understanding:
+
+- Basic compiler tokenization.
+- System calls in assembly.
+- How return values in C map to process exit codes.
+
+## Usage
+
+To assemble and run the assembly code:
+
+1. **Assemble:**
+
+   ```bash
+   nasm -f elf64 -o return69.o return69.asm
+   ```
+
+2. **Link:**
+
+   ```bash
+   ld -o return69 return69.o
+   ```
+
+3. **Run:**
+   ```bash
+   ./return69
+   echo $?
+   ```
+   The output should be `69`, confirming that the program exited with the correct status.
+
+## License
+
+This project is for educational purposes and free to use.
+
+---
+
+Happy coding!
 
 ---
 
@@ -145,18 +341,13 @@ Here’s the README content you requested for LexiParse, a powerful and modular 
 
 ## 🚀 Overview
 
-<<<<<<< HEAD
-
 LexiParse is a robust compiler framework built to handle the entire compilation pipeline—from tokenizing source code to parsing and generating an Abstract Syntax Tree (AST). Whether you're building a custom language or experimenting with compiler design, LexiParse offers a solid foundation for your projects.
 
 ## 🔍 Features
 
-=======
 LexiParse is a robust compiler framework built to handle the entire compilation pipeline—from tokenizing source code to parsing and generating an Abstract Syntax Tree (AST). Whether you're building a custom language or experimenting with compiler design, LexiParse offers a solid foundation for your projects.
 
 ## 🔍 Features
-
-> > > > > > > 1a195fc357d80983710b610ed516798e79b085bd
 
 - **Lexical Analysis**: Efficient tokenization engine for rapid processing.
 - **Syntax Parsing**: Flexible parser supporting multiple grammar structures.
@@ -165,12 +356,6 @@ LexiParse is a robust compiler framework built to handle the entire compilation 
 - **AST Generation**: Automatically generates abstract syntax trees for further compilation stages.
 
 ## 📦 Installation
-
-<<<<<<< HEAD
-
-=======
-
-> > > > > > > 1a195fc357d80983710b610ed516798e79b085bd
 
 ```bash
 # Clone the repository
@@ -185,12 +370,7 @@ npm install  # or use pip, cargo, etc., depending on the language
 
 ## 💻 Usage
 
-<<<<<<< HEAD
-
-=======
-
-> > > > > > > 1a195fc357d80983710b610ed516798e79b085bd
-> > > > > > > Here's a basic example of how to run LexiParse:
+Here's a basic example of how to run LexiParse:
 
 ```bash
 # Run the compiler on a sample file
@@ -199,14 +379,7 @@ lexiparse compile example.lp
 
 ## 🛠️ Contributing
 
-<<<<<<< HEAD
-
 Contributions are welcome! To contribute:
-
-=======
-Contributions are welcome! To contribute:
-
-> > > > > > > 1a195fc357d80983710b610ed516798e79b085bd
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
@@ -215,8 +388,6 @@ Contributions are welcome! To contribute:
 5. Create a pull request.
 
 ## 📄 License
-
-<<<<<<< HEAD
 
 This project is licensed under the MIT License.
 
@@ -235,5 +406,3 @@ This project is licensed under the MIT License.
 
 - Inspiration from classic compiler design textbooks.
 - Thanks to the open-source community for valuable resources and tools.
-
-> > > > > > > 1a195fc357d80983710b610ed516798e79b085bd

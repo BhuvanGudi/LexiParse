@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\bhuva\OneDrive\Desktop\GitHub Projects\CompilerForC\dev\hydrogen\cmake-build-relwithdebinfo-wsl\CMakeFiles\d86fb83ef91e5a4668afd407fe88b183\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F0657698-D54A-3232-BDE8-402CBBD96793}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
