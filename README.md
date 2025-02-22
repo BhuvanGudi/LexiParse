@@ -1,8 +1,6 @@
-Here's a draft of your README file:
-
----
-
-# Project README
+## Additional Documentation 
+- This is to show the implementation of project
+  - [Setup / Implementation Caution](./CAUTION.md)
 
 ## Overview
 
