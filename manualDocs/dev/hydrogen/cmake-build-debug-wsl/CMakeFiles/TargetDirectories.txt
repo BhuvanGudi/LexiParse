@@ -1,3 +1,0 @@
-C:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen/cmake-build-debug-wsl/CMakeFiles/hydrogen.dir
-C:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen/cmake-build-debug-wsl/CMakeFiles/ALL_BUILD.dir
-C:/Users/bhuva/OneDrive/Desktop/GitHub Projects/CompilerForC/dev/hydrogen/cmake-build-debug-wsl/CMakeFiles/ZERO_CHECK.dir
